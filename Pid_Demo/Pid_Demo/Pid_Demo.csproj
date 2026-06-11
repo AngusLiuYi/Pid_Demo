@@ -8,4 +8,33 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Include="bin\Debug\net8.0-windows\Pid_Demo.deps.json" />
+    <Content Include="bin\Debug\net8.0-windows\Pid_Demo.runtimeconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Libs\" />
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bin\Debug\net8.0-windows\Pid_Demo.dll" />
+    <None Include="bin\Debug\net8.0-windows\Pid_Demo.exe" />
+    <None Include="bin\Debug\net8.0-windows\Pid_Demo.pdb" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ScottPlot.WinForms" Version="5.1.58" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="AngusTools">
+      <HintPath>Libs\AngusTools.dll</HintPath>
+    </Reference>
+    <Reference Include="AntdUI">
+      <HintPath>Libs\AntdUI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
