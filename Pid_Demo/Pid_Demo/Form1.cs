@@ -23,6 +23,16 @@ namespace Pid_Demo
         private int SetVelocity { get; set; } = 0;
 
         /// <summary>
+        /// 当前反馈目标位置
+        /// </summary>
+        private double ActPosition { get; set; } = 0.0;
+
+        /// <summary>
+        /// 当前反馈目标速度
+        /// </summary>
+        private int ActVelocity { get; set; } = 0;
+
+        /// <summary>
         /// 时间数组
         /// 用于图标X轴时间坐标
         /// </summary>
@@ -30,9 +40,14 @@ namespace Pid_Demo
 
         /// <summary>
         /// 目标位置数组
-        /// 用于图标显示曲线
+        /// 用于图表显示曲线
         /// </summary>
         private List<double> SetPosList = [];
+
+        /// <summary>
+        /// 当前位置数组，用于图表显示曲线
+        /// </summary>
+        private List<double> ActPosList = [];
 
         /// <summary>
         /// 流程是否正在运行
@@ -89,6 +104,7 @@ namespace Pid_Demo
             btn.Loading = false;
         }
 
+        private SimSystem simSystem = new();
         private void Process()
         {
             //获取当前时间戳
@@ -100,18 +116,26 @@ namespace Pid_Demo
             Plot_M.Plot.Clear();
             //默认创建目标位置曲线
             Plot_M.Plot.Add.ScatterLine(dtList, SetPosList);
+            Plot_M.Plot.Add.ScatterLine(dtList, ActPosList);
 
             //开启流程
             while (Processing)
             {
+                dtNow = DateTime.Now;
                 //20ms时间间隔，刷新目标位置数据
                 if ((dtNow - dt20ms).TotalMilliseconds>=20)
                 {
                     //获取当前时间及目标位置数据
                     dtList.Add(dtNow.TimeOfDay.TotalMilliseconds);
-                    SetPosList.Add(SetPosition += SetVelocity);
+
+                    SetPosition = Math.Max(-1000, Math.Min(SetPosition += SetVelocity, 1000));
+                    SetPosList.Add(SetPosition);
+
+                    ActPosition =simSystem.Update(SetPosition-simSystem.CurrentValue);
+                    ActPosList.Add(ActPosition);
+
                     //限制数据量，避免内存占用过大
-                    if (dtList.Count>8000)
+                    if (dtList.Count>3000)
                     {
                         dtList.RemoveAt(0);
                         SetPosList.RemoveAt(0);

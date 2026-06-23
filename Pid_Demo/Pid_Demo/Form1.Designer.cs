@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            AntdUI.SliderMarkItem sliderMarkItem6 = new AntdUI.SliderMarkItem();
-            AntdUI.SliderMarkItem sliderMarkItem7 = new AntdUI.SliderMarkItem();
-            AntdUI.SliderMarkItem sliderMarkItem8 = new AntdUI.SliderMarkItem();
-            AntdUI.SliderMarkItem sliderMarkItem9 = new AntdUI.SliderMarkItem();
-            AntdUI.SliderMarkItem sliderMarkItem10 = new AntdUI.SliderMarkItem();
+            AntdUI.SliderMarkItem sliderMarkItem1 = new AntdUI.SliderMarkItem();
+            AntdUI.SliderMarkItem sliderMarkItem2 = new AntdUI.SliderMarkItem();
+            AntdUI.SliderMarkItem sliderMarkItem3 = new AntdUI.SliderMarkItem();
+            AntdUI.SliderMarkItem sliderMarkItem4 = new AntdUI.SliderMarkItem();
+            AntdUI.SliderMarkItem sliderMarkItem5 = new AntdUI.SliderMarkItem();
             panel1 = new Panel();
             panel2 = new Panel();
             Plot_M = new ScottPlot.WinForms.FormsPlot();
             panel3 = new Panel();
-            slider8 = new AntdUI.Slider();
             BtnStart = new AntdUI.Button();
+            slider8 = new AntdUI.Slider();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
@@ -79,33 +79,6 @@
             panel3.Size = new Size(1077, 235);
             panel3.TabIndex = 2;
             // 
-            // slider8
-            // 
-            slider8.Align = AntdUI.TAlignMini.Bottom;
-            slider8.Dock = DockStyle.Right;
-            slider8.Location = new Point(1023, 0);
-            sliderMarkItem6.Text = "-100";
-            sliderMarkItem6.Value = -100;
-            sliderMarkItem7.Text = "-50";
-            sliderMarkItem7.Value = -50;
-            sliderMarkItem8.Text = "0";
-            sliderMarkItem9.Text = "50";
-            sliderMarkItem9.Value = 50;
-            sliderMarkItem10.Text = "100";
-            sliderMarkItem10.Value = 100;
-            slider8.Marks.Add(sliderMarkItem6);
-            slider8.Marks.Add(sliderMarkItem7);
-            slider8.Marks.Add(sliderMarkItem8);
-            slider8.Marks.Add(sliderMarkItem9);
-            slider8.Marks.Add(sliderMarkItem10);
-            slider8.MinValue = -100;
-            slider8.Name = "slider8";
-            slider8.Padding = new Padding(0, 0, 34, 0);
-            slider8.Size = new Size(54, 235);
-            slider8.TabIndex = 2;
-            slider8.ValueChanged += slider8_ValueChanged;
-            slider8.MouseUp += slider8_MouseUp;
-            // 
             // BtnStart
             // 
             BtnStart.AutoSizeMode = AntdUI.TAutoSize.Auto;
@@ -118,6 +91,34 @@
             BtnStart.Text = "启动跟随";
             BtnStart.Type = AntdUI.TTypeMini.Primary;
             BtnStart.Click += BtnStart_Click;
+            // 
+            // slider8
+            // 
+            slider8.Align = AntdUI.TAlignMini.Bottom;
+            slider8.Dock = DockStyle.Right;
+            slider8.Location = new Point(1023, 0);
+            sliderMarkItem1.Text = "-10";
+            sliderMarkItem1.Value = -10;
+            sliderMarkItem2.Text = "-5";
+            sliderMarkItem2.Value = -5;
+            sliderMarkItem3.Text = "0";
+            sliderMarkItem4.Text = "5";
+            sliderMarkItem4.Value = 5;
+            sliderMarkItem5.Text = "10";
+            sliderMarkItem5.Value = 10;
+            slider8.Marks.Add(sliderMarkItem1);
+            slider8.Marks.Add(sliderMarkItem2);
+            slider8.Marks.Add(sliderMarkItem3);
+            slider8.Marks.Add(sliderMarkItem4);
+            slider8.Marks.Add(sliderMarkItem5);
+            slider8.MaxValue = 10;
+            slider8.MinValue = -10;
+            slider8.Name = "slider8";
+            slider8.Padding = new Padding(0, 0, 34, 0);
+            slider8.Size = new Size(54, 235);
+            slider8.TabIndex = 2;
+            slider8.ValueChanged += slider8_ValueChanged;
+            slider8.MouseUp += slider8_MouseUp;
             // 
             // Form1
             // 
