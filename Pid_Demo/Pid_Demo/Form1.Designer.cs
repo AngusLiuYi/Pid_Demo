@@ -28,36 +28,106 @@
         /// </summary>
         private void InitializeComponent()
         {
-            AntdUI.SliderMarkItem sliderMarkItem1 = new AntdUI.SliderMarkItem();
-            AntdUI.SliderMarkItem sliderMarkItem2 = new AntdUI.SliderMarkItem();
-            AntdUI.SliderMarkItem sliderMarkItem3 = new AntdUI.SliderMarkItem();
-            AntdUI.SliderMarkItem sliderMarkItem4 = new AntdUI.SliderMarkItem();
-            AntdUI.SliderMarkItem sliderMarkItem5 = new AntdUI.SliderMarkItem();
+            AntdUI.SliderMarkItem sliderMarkItem6 = new AntdUI.SliderMarkItem();
+            AntdUI.SliderMarkItem sliderMarkItem7 = new AntdUI.SliderMarkItem();
+            AntdUI.SliderMarkItem sliderMarkItem8 = new AntdUI.SliderMarkItem();
+            AntdUI.SliderMarkItem sliderMarkItem9 = new AntdUI.SliderMarkItem();
+            AntdUI.SliderMarkItem sliderMarkItem10 = new AntdUI.SliderMarkItem();
             panel1 = new Panel();
+            InProbability = new AntdUI.Input();
+            InDamping = new AntdUI.Input();
+            InNoiseStrength = new AntdUI.Input();
+            InInertia = new AntdUI.Input();
             panel2 = new Panel();
             Plot_M = new ScottPlot.WinForms.FormsPlot();
             panel3 = new Panel();
+            BtnClear = new AntdUI.Button();
             BtnStart = new AntdUI.Button();
             slider8 = new AntdUI.Slider();
+            panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(InProbability);
+            panel1.Controls.Add(InDamping);
+            panel1.Controls.Add(InNoiseStrength);
+            panel1.Controls.Add(InInertia);
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(401, 744);
+            panel1.Size = new Size(238, 744);
             panel1.TabIndex = 0;
+            // 
+            // InProbability
+            // 
+            InProbability.Dock = DockStyle.Top;
+            InProbability.Location = new Point(0, 132);
+            InProbability.Name = "InProbability";
+            InProbability.PrefixFore = Color.Blue;
+            InProbability.PrefixSvg = "";
+            InProbability.PrefixText = "干扰概率";
+            InProbability.Radius = 10;
+            InProbability.Size = new Size(238, 44);
+            InProbability.TabIndex = 8;
+            InProbability.Text = "321";
+            InProbability.TextAlign = HorizontalAlignment.Right;
+            InProbability.TextChanged += InInertia_TextChanged;
+            // 
+            // InDamping
+            // 
+            InDamping.Dock = DockStyle.Top;
+            InDamping.Location = new Point(0, 88);
+            InDamping.Name = "InDamping";
+            InDamping.PrefixFore = Color.Blue;
+            InDamping.PrefixSvg = "";
+            InDamping.PrefixText = "阻尼系数";
+            InDamping.Radius = 10;
+            InDamping.Size = new Size(238, 44);
+            InDamping.TabIndex = 7;
+            InDamping.Text = "321";
+            InDamping.TextAlign = HorizontalAlignment.Right;
+            InDamping.TextChanged += InInertia_TextChanged;
+            // 
+            // InNoiseStrength
+            // 
+            InNoiseStrength.Dock = DockStyle.Top;
+            InNoiseStrength.Location = new Point(0, 44);
+            InNoiseStrength.Name = "InNoiseStrength";
+            InNoiseStrength.PrefixFore = Color.Blue;
+            InNoiseStrength.PrefixSvg = "";
+            InNoiseStrength.PrefixText = "随机干扰强度";
+            InNoiseStrength.Radius = 10;
+            InNoiseStrength.Size = new Size(238, 44);
+            InNoiseStrength.TabIndex = 6;
+            InNoiseStrength.Text = "321";
+            InNoiseStrength.TextAlign = HorizontalAlignment.Right;
+            InNoiseStrength.TextChanged += InInertia_TextChanged;
+            // 
+            // InInertia
+            // 
+            InInertia.Dock = DockStyle.Top;
+            InInertia.Location = new Point(0, 0);
+            InInertia.Name = "InInertia";
+            InInertia.PrefixFore = Color.Blue;
+            InInertia.PrefixSvg = "";
+            InInertia.PrefixText = "物理惯性系数";
+            InInertia.Radius = 10;
+            InInertia.Size = new Size(238, 44);
+            InInertia.TabIndex = 5;
+            InInertia.Text = "321";
+            InInertia.TextAlign = HorizontalAlignment.Right;
+            InInertia.TextChanged += InInertia_TextChanged;
             // 
             // panel2
             // 
             panel2.Controls.Add(Plot_M);
             panel2.Dock = DockStyle.Top;
-            panel2.Location = new Point(401, 0);
+            panel2.Location = new Point(238, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1077, 509);
+            panel2.Size = new Size(1240, 509);
             panel2.TabIndex = 1;
             // 
             // Plot_M
@@ -66,18 +136,29 @@
             Plot_M.Location = new Point(0, 0);
             Plot_M.Margin = new Padding(5);
             Plot_M.Name = "Plot_M";
-            Plot_M.Size = new Size(1077, 509);
+            Plot_M.Size = new Size(1240, 509);
             Plot_M.TabIndex = 5;
             // 
             // panel3
             // 
+            panel3.Controls.Add(BtnClear);
             panel3.Controls.Add(BtnStart);
             panel3.Controls.Add(slider8);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(401, 509);
+            panel3.Location = new Point(238, 509);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1077, 235);
+            panel3.Size = new Size(1240, 235);
             panel3.TabIndex = 2;
+            // 
+            // BtnClear
+            // 
+            BtnClear.Location = new Point(755, 6);
+            BtnClear.Name = "BtnClear";
+            BtnClear.Size = new Size(128, 52);
+            BtnClear.TabIndex = 8;
+            BtnClear.Text = "清空";
+            BtnClear.Type = AntdUI.TTypeMini.Error;
+            BtnClear.Click += BtnClear_Click;
             // 
             // BtnStart
             // 
@@ -96,21 +177,21 @@
             // 
             slider8.Align = AntdUI.TAlignMini.Bottom;
             slider8.Dock = DockStyle.Right;
-            slider8.Location = new Point(1023, 0);
-            sliderMarkItem1.Text = "-10";
-            sliderMarkItem1.Value = -10;
-            sliderMarkItem2.Text = "-5";
-            sliderMarkItem2.Value = -5;
-            sliderMarkItem3.Text = "0";
-            sliderMarkItem4.Text = "5";
-            sliderMarkItem4.Value = 5;
-            sliderMarkItem5.Text = "10";
-            sliderMarkItem5.Value = 10;
-            slider8.Marks.Add(sliderMarkItem1);
-            slider8.Marks.Add(sliderMarkItem2);
-            slider8.Marks.Add(sliderMarkItem3);
-            slider8.Marks.Add(sliderMarkItem4);
-            slider8.Marks.Add(sliderMarkItem5);
+            slider8.Location = new Point(1186, 0);
+            sliderMarkItem6.Text = "-10";
+            sliderMarkItem6.Value = -10;
+            sliderMarkItem7.Text = "-5";
+            sliderMarkItem7.Value = -5;
+            sliderMarkItem8.Text = "0";
+            sliderMarkItem9.Text = "5";
+            sliderMarkItem9.Value = 5;
+            sliderMarkItem10.Text = "10";
+            sliderMarkItem10.Value = 10;
+            slider8.Marks.Add(sliderMarkItem6);
+            slider8.Marks.Add(sliderMarkItem7);
+            slider8.Marks.Add(sliderMarkItem8);
+            slider8.Marks.Add(sliderMarkItem9);
+            slider8.Marks.Add(sliderMarkItem10);
             slider8.MaxValue = 10;
             slider8.MinValue = -10;
             slider8.Name = "slider8";
@@ -130,6 +211,8 @@
             Controls.Add(panel1);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
+            panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -144,5 +227,10 @@
         private ScottPlot.WinForms.FormsPlot Plot_M;
         private AntdUI.Slider slider8;
         private AntdUI.Button BtnStart;
+        private AntdUI.Button BtnClear;
+        private AntdUI.Input InInertia;
+        private AntdUI.Input InNoiseStrength;
+        private AntdUI.Input InProbability;
+        private AntdUI.Input InDamping;
     }
 }

@@ -21,12 +21,17 @@ namespace Pid_Demo
         /// <summary>
         /// 随机干扰强度（越大越容易震荡/过冲）
         /// </summary>
-        public double NoiseStrength { get; set; } = 1.2;
+        public double NoiseStrength { get; set; } = 0.8;
 
         /// <summary>
         /// 阻尼系数（越小越容易震荡）
         /// </summary>
         public double Damping { get; set; } = 0.92;
+
+        /// <summary>
+        /// 干扰几率（越小越容易受干扰）
+        /// </summary>
+        public double Probability { get; set; } = 0.1;
 
         /// <summary>
         /// 上一时刻速度（惯性模拟）
@@ -50,8 +55,9 @@ namespace Pid_Demo
 
             // 2. 生成随机干扰（含15%概率突发强干扰）
             double noise = (_random.NextDouble() * 2 - 1) * NoiseStrength;
-            if (_random.NextDouble() < 0.15) noise *= 3;
+            if (_random.NextDouble() < Probability) noise *= 3;
 
+            speed=Math.Max(-5, Math.Min(5, speed)); // 限制速度范围，避免过快
             // 3. 更新当前值
             CurrentValue += speed + noise;
 
@@ -62,6 +68,15 @@ namespace Pid_Demo
             CurrentValue = Math.Max(-1000, Math.Min(1000, CurrentValue));
 
             return CurrentValue;
+        }
+
+        /// <summary>
+        /// 清空数据
+        /// </summary>
+        public void Clear()
+        {
+            CurrentValue = 0.0;
+            _lastSpeed = 0.0;
         }
     }
 }

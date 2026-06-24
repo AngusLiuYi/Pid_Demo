@@ -82,8 +82,8 @@ namespace Pid_Demo
         private async void BtnStart_Click(object sender, EventArgs e)
         {
             AntdUI.Button btn = sender as AntdUI.Button ?? new AntdUI.Button();
-            btn.Loading= true;
-            if (btn.Text=="启动跟随")
+            btn.Loading = true;
+            if (btn.Text == "启动跟随")
             {
                 btn.Text = "停止跟随";
                 btn.IconSvg = "PauseCircleOutlined";
@@ -123,7 +123,7 @@ namespace Pid_Demo
             {
                 dtNow = DateTime.Now;
                 //20ms时间间隔，刷新目标位置数据
-                if ((dtNow - dt20ms).TotalMilliseconds>=20)
+                if ((dtNow - dt20ms).TotalMilliseconds >= 20)
                 {
                     //获取当前时间及目标位置数据
                     dtList.Add(dtNow.TimeOfDay.TotalMilliseconds);
@@ -131,14 +131,15 @@ namespace Pid_Demo
                     SetPosition = Math.Max(-1000, Math.Min(SetPosition += SetVelocity, 1000));
                     SetPosList.Add(SetPosition);
 
-                    ActPosition =simSystem.Update(SetPosition-simSystem.CurrentValue);
+                    ActPosition = simSystem.Update(SetPosition - simSystem.CurrentValue);
                     ActPosList.Add(ActPosition);
 
                     //限制数据量，避免内存占用过大
-                    if (dtList.Count>3000)
+                    if (dtList.Count > 1000)
                     {
                         dtList.RemoveAt(0);
                         SetPosList.RemoveAt(0);
+                        ActPosList.RemoveAt(0);
                     }
                     //更新时间戳
                     dt20ms = dtNow;
@@ -160,6 +161,65 @@ namespace Pid_Demo
                 //释放CPU资源，避免UI线程阻塞
                 Application.DoEvents();
                 Thread.Sleep(0);
+            }
+        }
+
+        private void BtnClear_Click(object sender, EventArgs e)
+        {
+            if (Processing)
+            {
+                MessageBox.Show("请先停止跟随流程，再清除数据！");
+                return;
+            }
+            SetPosList.Clear();
+            ActPosList.Clear();
+            dtList.Clear();
+            SetPosition = 0;
+            ActPosition = 0;
+            Plot_M.Plot.Clear();
+            Plot_M.Refresh();
+            simSystem.Clear();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            InInertia.Text = simSystem.Inertia.ToString();
+            InNoiseStrength.Text = simSystem.NoiseStrength.ToString();
+            InDamping.Text = simSystem.Damping.ToString();
+            InProbability.Text = simSystem.Probability.ToString();
+        }
+
+        private void InInertia_TextChanged(object sender, EventArgs e)
+        {
+            AntdUI.Input in1 = sender as AntdUI.Input ?? new AntdUI.Input();
+            switch (in1.Name)
+            {
+                case "InInertia":
+                    if (double.TryParse(in1.Text, out double inertia))
+                    {
+                        simSystem.Inertia = inertia;
+                    }
+                    break;
+                case "InNoiseStrength":
+                    if (double.TryParse(in1.Text, out double noiseStrength))
+                    {
+                        simSystem.NoiseStrength = noiseStrength;
+                    }
+                    break;
+                case "InDamping":
+                    if (double.TryParse(in1.Text, out double damping))
+                    {
+                        simSystem.Damping = damping;
+                    }
+                    break;
+                case "InProbability":
+                    if (double.TryParse(in1.Text, out double probability))
+                    {
+                        simSystem.Probability = probability;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }
